@@ -1,0 +1,105 @@
+local player = game.Players.LocalPlayer
+local playerGui = player:WaitForChild("PlayerGui")
+ 
+-- GUI Setup
+local screenGui = Instance.new("ScreenGui")
+screenGui.Parent = playerGui
+screenGui.Name = "InfiniteJumpGUIBYFertour"
+ 
+local frame = Instance.new("Frame")
+frame.Size = UDim2.new(0, 250, 0, 100)
+frame.Position = UDim2.new(0.5, -125, 0.4, 0)
+frame.BackgroundColor3 = Color3.fromRGB(50, 50, 50)
+frame.BorderSizePixel = 2
+frame.Active = true
+frame.Draggable = true
+frame.Parent = screenGui
+ 
+-- Title Bar
+local titleBar = Instance.new("Frame")
+titleBar.Size = UDim2.new(1, 0, 0, 30)
+titleBar.BackgroundColor3 = Color3.fromRGB(40, 40, 40)
+titleBar.Parent = frame
+ 
+local titleLabel = Instance.new("TextLabel")
+titleLabel.Size = UDim2.new(1, -60, 1, 0)
+titleLabel.BackgroundTransparency = 1
+titleLabel.Text = "Infinite Jumps"
+titleLabel.TextColor3 = Color3.new(1, 1, 1)
+titleLabel.Font = Enum.Font.SourceSansBold
+titleLabel.TextScaled = true
+titleLabel.Parent = titleBar
+ 
+local closeButton = Instance.new("TextButton")
+closeButton.Size = UDim2.new(0, 25, 0, 25)
+closeButton.Position = UDim2.new(1, -30, 0.1, 0)
+closeButton.BackgroundColor3 = Color3.fromRGB(200, 0, 0)
+closeButton.Text = "X"
+closeButton.TextColor3 = Color3.new(1, 1, 1)
+closeButton.Parent = titleBar
+ 
+local minimizeButton = Instance.new("TextButton")
+minimizeButton.Size = UDim2.new(0, 25, 0, 25)
+minimizeButton.Position = UDim2.new(1, -60, 0.1, 0)
+minimizeButton.BackgroundColor3 = Color3.fromRGB(150, 150, 150)
+minimizeButton.Text = "-"
+minimizeButton.TextColor3 = Color3.new(1, 1, 1)
+minimizeButton.Parent = titleBar
+ 
+local toggleJumpButton = Instance.new("TextButton")
+toggleJumpButton.Size = UDim2.new(0.8, 0, 0, 40)
+toggleJumpButton.Position = UDim2.new(0.1, 0, 0.5, 0)
+toggleJumpButton.Text = "Infinite Jump: OFF"
+toggleJumpButton.BackgroundColor3 = Color3.fromRGB(100, 100, 100)
+toggleJumpButton.TextColor3 = Color3.new(1, 1, 1)
+toggleJumpButton.Parent = frame
+ 
+local creditLabel = Instance.new("TextLabel")
+creditLabel.Size = UDim2.new(1, 0, 0, 20)
+creditLabel.Position = UDim2.new(0, 0, 0.85, 0)
+creditLabel.BackgroundTransparency = 1
+creditLabel.Text = "Made by Fertour"
+creditLabel.TextColor3 = Color3.fromRGB(255, 255, 255)
+creditLabel.TextScaled = true
+creditLabel.Font = Enum.Font.SourceSansBold
+creditLabel.Parent = frame
+ 
+-- Infinite Jump Logic
+local infiniteJump = false
+ 
+local function enableInfiniteJump()
+    game:GetService("UserInputService").JumpRequest:Connect(function()
+        if infiniteJump then
+            player.Character:FindFirstChildOfClass("Humanoid"):ChangeState(Enum.HumanoidStateType.Jumping)
+        end
+    end)
+end
+ 
+local function toggleInfiniteJump()
+    infiniteJump = not infiniteJump
+    toggleJumpButton.Text = infiniteJump and "Infinite Jump: ON" or "Infinite Jump: OFF"
+    toggleJumpButton.BackgroundColor3 = infiniteJump and Color3.fromRGB(0, 200, 0) or Color3.fromRGB(100, 100, 100)
+end
+ 
+toggleJumpButton.MouseButton1Click:Connect(toggleInfiniteJump)
+ 
+-- Minimize GUI Function
+local minimized = false
+minimizeButton.MouseButton1Click:Connect(function()
+    minimized = not minimized
+    for _, obj in pairs(frame:GetChildren()) do
+        if obj ~= titleBar and obj ~= creditLabel then
+            obj.Visible = not minimized
+        end
+    end
+    frame.Size = minimized and UDim2.new(0, 250, 0, 30) or UDim2.new(0, 250, 0, 100)
+    minimizeButton.Text = minimized and "+" or "-"
+end)
+ 
+-- Close GUI Function
+closeButton.MouseButton1Click:Connect(function()
+    screenGui:Destroy()
+end)
+ 
+enableInfiniteJump()
+print("Infinite Jump GUI Loaded Successfully!")
