@@ -1,105 +1,39 @@
-local player = game.Players.LocalPlayer
-local playerGui = player:WaitForChild("PlayerGui")
- 
--- GUI Setup
-local screenGui = Instance.new("ScreenGui")
-screenGui.Parent = playerGui
-screenGui.Name = "InfiniteJumpGUIBYFertour"
- 
-local frame = Instance.new("Frame")
-frame.Size = UDim2.new(0, 250, 0, 100)
-frame.Position = UDim2.new(0.5, -125, 0.4, 0)
-frame.BackgroundColor3 = Color3.fromRGB(50, 50, 50)
-frame.BorderSizePixel = 2
-frame.Active = true
-frame.Draggable = true
-frame.Parent = screenGui
- 
--- Title Bar
-local titleBar = Instance.new("Frame")
-titleBar.Size = UDim2.new(1, 0, 0, 30)
-titleBar.BackgroundColor3 = Color3.fromRGB(40, 40, 40)
-titleBar.Parent = frame
- 
-local titleLabel = Instance.new("TextLabel")
-titleLabel.Size = UDim2.new(1, -60, 1, 0)
-titleLabel.BackgroundTransparency = 1
-titleLabel.Text = "Infinite Jumps"
-titleLabel.TextColor3 = Color3.new(1, 1, 1)
-titleLabel.Font = Enum.Font.SourceSansBold
-titleLabel.TextScaled = true
-titleLabel.Parent = titleBar
- 
-local closeButton = Instance.new("TextButton")
-closeButton.Size = UDim2.new(0, 25, 0, 25)
-closeButton.Position = UDim2.new(1, -30, 0.1, 0)
-closeButton.BackgroundColor3 = Color3.fromRGB(200, 0, 0)
-closeButton.Text = "X"
-closeButton.TextColor3 = Color3.new(1, 1, 1)
-closeButton.Parent = titleBar
- 
-local minimizeButton = Instance.new("TextButton")
-minimizeButton.Size = UDim2.new(0, 25, 0, 25)
-minimizeButton.Position = UDim2.new(1, -60, 0.1, 0)
-minimizeButton.BackgroundColor3 = Color3.fromRGB(150, 150, 150)
-minimizeButton.Text = "-"
-minimizeButton.TextColor3 = Color3.new(1, 1, 1)
-minimizeButton.Parent = titleBar
- 
-local toggleJumpButton = Instance.new("TextButton")
-toggleJumpButton.Size = UDim2.new(0.8, 0, 0, 40)
-toggleJumpButton.Position = UDim2.new(0.1, 0, 0.5, 0)
-toggleJumpButton.Text = "Infinite Jump: OFF"
-toggleJumpButton.BackgroundColor3 = Color3.fromRGB(100, 100, 100)
-toggleJumpButton.TextColor3 = Color3.new(1, 1, 1)
-toggleJumpButton.Parent = frame
- 
-local creditLabel = Instance.new("TextLabel")
-creditLabel.Size = UDim2.new(1, 0, 0, 20)
-creditLabel.Position = UDim2.new(0, 0, 0.85, 0)
-creditLabel.BackgroundTransparency = 1
-creditLabel.Text = "Made by Fertour"
-creditLabel.TextColor3 = Color3.fromRGB(255, 255, 255)
-creditLabel.TextScaled = true
-creditLabel.Font = Enum.Font.SourceSansBold
-creditLabel.Parent = frame
- 
--- Infinite Jump Logic
-local infiniteJump = false
- 
-local function enableInfiniteJump()
-    game:GetService("UserInputService").JumpRequest:Connect(function()
-        if infiniteJump then
-            player.Character:FindFirstChildOfClass("Humanoid"):ChangeState(Enum.HumanoidStateType.Jumping)
-        end
-    end)
+-- // Protected by Monsy Obfuscator
+local moY_5KmbEG={"f91baa23f757b512b047a8813fa432f78420b8a10438030c92e1214b18bcd926f047bdfea065d1546d988b77d8373633fbf97daffd5650f482d2b0b346e983ee27595608424aa7025f0b6f760eb12ed9a2c3188c7c438392924cf0072edc231a4c8c6ae9","874ac6aa8fd80591cdae0f785f485135b61a3c787bbace39d4003ddaf5fb3dd37db98658c6d824c8ab8b50db51a374cf1e9faefa0f940293d69fb75c9638977fe25a8491f120d0211ee307fa34f3feb7d4a4017d875046332da20ac3ee672cb819d2e7db","42e9554ab3074f772e9ee6bdebd2b4084852abc960b530e5ed1833f53f2c8bccf8cfd043754c4239838e6080b312af11c3067da1d07fc348a0f207538cb56d4f15b7078652ffb07598a9f1fd9b35074361cdf2c0b305c896911c4e918fca162c8a184e5b","9067c9af402ade8320701dc0fe8cff8d2b5e4c5e0a01e50da6faf140201fa9d45a42e3f69ab32f354fb46244d44ce1dd22c6f770849246c9c571eca53c5c3f92a2f9c4c00b5202f15dd6ec788fbf08dd9ef9e0b70020da7a04b0fe1dbd3db647590e23c8","dcfa666996932c0c1dead05bca2a4425af93ac4f7446ada229133d1f1554d436861606a0779c702f983f622c311c57244701c5aa78e8fe0f51ba976c5d26d16af0da7fb9cb3a47e7f1db1cfef1c36929858fb49ed2c4bc8957dddc2cbd69035195193e50","906791be878bf4ce1c0b48cbdcfeee3febc0b7e896f1b1369b355eb85bac3a40d09adedd224c74116f4b2e5f9850a619ce9de16f8ba1df8026a6f09218707a96089cbb1ad4b9db2a6abaa799e867751d39034111fae9ddc3e8b0d0e94031596559871bcd","48a4dbb8f52017280aab44d9ed06f6f24b82ccb4383ffd8e6da9f54cb0adb504e5d81bcf727b34a5b340300517991c6a36285ee737e8420f5369faef38ce9f32570393309d2fee0ad7c4903987254d28be899351bf30c5cf398f053401a7d12e9fb8f472","57ed98acb60781b6861b6589e8aec91bd5ed1cbec6fb8860d8ba14070943bd0eb1abcae5fbe68712ff6661b7d4ddf1bf1df7ea4613428f5052af242aef4e3810a3e89f7759b9257fd2881690c3d2592b695f466c7dfd152d2c48d9b3e88ce00574f88720","b1e45b283813a7a2ecae5dc733b92f9455ee9da03aacf6d38cfc32cae2e15e7c4adbd49aa067fe668052e935757c827740148758d2c46c83e5d712d6a7f089a35dddbbbafbfd1b1e9917eabd249d52f4c9d8f5ff32cfca67b403b7a6e275ae8aaabe6f0f","880863c15a9d8002effc660d5bb40f05c505766ac224ecba95c5e1c15e0734eebdef770bfae142cbba0880f9fdedf28120d3235d929da369d43cfe1878927843fb2080d62c04794e15bc09b5fe6828c4d347f4c035dafcd77124cea2524dd5a086548f0f","e3396d24875bd4f7a2da17665d24380e9595fabd209e08935b4d0248de8cbaede3280f3d7f4cb9d590f70e3fdb9ca186528fa9df13c3f64c4ce6e77f3c892616c0560a9d628e8f52bfa185484156f9b6b0fe20a361d886a6f9d4ff0ae3ad3cba5c46a5c7","253ddc4254b908724d6663e0221ac3edac8427ec10fdf2fa66f2f08dc6de695699413dbdc4c0934935404b76abd0c764caf3f4950686fc019efcc6d6c94b2f4ddf9c1647104cf40280b20ff8bf30bffbf84c3319babe0745c77343cf23ab383a06e3d5d5","f05f346568c17212d52eeb65017641b7e0f5dc3d3bc182f88646a545f12e6cd391cacf95ade085fb93edc96b7b7707d3c48f65701148d39279dacf988de34bd3ba8a7c7baccd370d7f53823e5a2e5b300d0ff12c870e24472883acdcb2a61e4f9638639c","d55fc1763267a98c3d456dd79d68b90b0e3e77dbaaddbb4fd653d91c4f8e6102a3270d2cc00fd89b750575d1b9424bcc5b0b4eb58bd7ddbfbb4835d666f80a8f84fe1883fed170246523efbd567757f5d72b9a7690e38f725ada6da42af204af194f62ab","d0b229df2ddf987ef8c12085261d5de63dbbaeb6d94dcd24b9bb74fc8d3fa4acc5f6b3bf98b8075afa1c2e2d9b8701700d4484bf4641c815c005a4f807d98d5e267f50146965f9fedc9b43595be8288425b62d5dc5242fc766b2b9cf9351db0fd25061ef","879db315a3029168c9b0f6f879436420b5a0105395cafd8a9df0dbc516fa06c8afb1d696388951e27dc515384e14259d8383421f212cc55fe465a91f3b244756e8edcff5c1d4966bf98cbc8cb0b57c69a9025eb290ff454ce749726b88fc40209ec99e8a","cb1007cdfb9ee3dcb58ee53dff6d56aed9c808909d611f2f6986e4ddbfb24a96ab604716878d28deb9b046c9694bb470a5345248f6398ec1bca779cd03c4ff5c91c1073670cf5f98ad27e57a2b63ef98febd112d23302d84bcd1225cdc586a4074d986b3","d8ee17ea6cc5fa0739bb58a0b37f7763c53c7abfb3f2cf9a0e9b0f045c59e677e7d55ca50ae64ceaf788aefeb536d11e6f83f7add2fd3e99cec93e789470784899582dc013ab24fa3f5e08cd451d987bdcdc655c80285b93063a4da87f83946a6c8e91d4","399bfa78d0c952de4898309cb468bffcfab221af84055e4d54bfa2cac079680c19541a1f86d4d9bf5074fa7f510319b4ab72cfec5796485f6258fe3c5da8f7a6d341b5b5e31f1185b64f9d821b7ef6bf916057f21a00a507ecf0ddc95d24621963345018","159ab1e32a839ca93a3efaaae83d47b4f94cbbd947a5b6b72d3173868f2db379d9645e275f63263441af7e991ec039a614244c72558602a444297fb5d0c7c4c21609013a84ded357d4b4f62ebbade1577b79b45dc2fc7463c0564ad707b7a1dccbe5fc8a","f88b840d97ea245b030c30e5fc68438da2d53fd72c570f29d3866f3c3acf7b15438e06d3f3e04baa3edde04042c490bddc9b8df0cf0551b4e776e71f3a351b22f7d043ea2567b390c3ed50a9bc93e3843d129c3c62642eccd16af028136b9836e679e8b6","a24810ac4b050e544d9dfda9903118868f8f78c99d03bd9ead5efdaeedd0489105d11d2dd6a78ffcce85a74bade849f5f7fc8c1abc70f2ff2e493ac7fa6e93cbf80b5c5e6414f0a55bea007ad663c549b02470931e190e8c7931b76de45cc21e62202371","38420092e5b101399250c3213b40e7b0b41aa1dbf1567fad36b210f6000a253eddd015b7be662e74034a2fd37535de5128caf8677f2fc0efaa74a11eda425362a2bc4d569439e2b084424603baca2cb0668deb902b4d688e1fd40211066f43ff1ef02604","4a0ec6d898a0ea91aefc851926c9030873c1961819af8efd21af6266dbf7c2267ec83aa3d1bc84b693bdd024dd6fa879cb51af68be85dc84b95901f2c790a1df9db10fe56fd33bafecda1826f30607919e00de28f6503badbbdf5717e6bd45f960287931","e216fcc6f82a62fd6b1523684363e88445bf2fa2567ff16ac993015b62e6343524ea1709d0bdd6eb2fce444806028f482bd7dfe12fd239398d2d4be528159735f6f97f52f409e3b76295a37b526b12378da7ae64281bc2e52c269a055b9614e8f58bb9ee","19162321b34644dc297f261c2c2fde2950b8e54f99900833c853f77dffe06ee46e01f9c10fd660710faa039ce0895f82bfdd14942ff6599aef50206ef728d56076922e5795bfc18044c36af9d85f419370ba88ef5a35aafae31d16d99e2b252ae991c5e5","33448013e4e31b8f90b7b0b595dc6b3bb2f04ded23a018b2934240c714b1b69f0bfdb6fa2e5c396fca3e5346d38f85305c98857c5a44fae3f4d76e99379a45dff1a94e7e7f21fbe456a64ade716fb30de863adf86b017b0ee2e520e074574656da51cbfc","46fc02986ee6a1f2b1b1f9541355fd94d89dd544790f386d2c2fa0c5a293065edc5b989c1b96749593b159f155f4ee769ce5454230d68fc5d82ad7f999b64bf8d761795e8f0075f9a76ac64b32f16f238b6967290ea41fc395d40df5fb02938cdc1d4f28","6b5e35340066fc4e110a6209f879bfe723cf3e0758179defdf0257a8c5ee7915b837d79f6df068a35a01420f3ad3416eb901132b6c88e758e7575831df347cbfe751383c0aad4e8134250363259cfadfb5177ebb982edb8e9ebb9b165f60d975f6eafffb","db8a4bf4f0a138e4dd87475a9db15b2d3279faf4e0064ce46ca57501aee2eababc6850d62559eccb9730c4ed690608b50f96ddbd08ad39a09160d64cb179f0af23902137d152df35eb5473ac5d296e241b2bb690e1cb3aba5c8ff0aa3c0d4383789145a0","f5192e162bbe63514e3b39fb40216b967dd9f499d5096ea710f14cdb0cbd203513648e9276edf0e102207e5bebc466e39d68205ab98b2528b3afb5516e17aaa27c85759aa266d18c211e9d486d6555b1fccd0bef708edfed6853c985e5b6167ae63e5ab2","d7043dec22651fb9a0835a8f32e83b0be9c0b44d2600072f219d5b8434e706cc2eb76b28929d67c8d73e107a178cbfc3dab1ccda933fa9248ad7ad483e423d1ffa7b88700ae0a5e0f818d2822646200e003aa735b8efe980da7d912f804701cb4841149c","ffe028f974cdbafe9ef6c5b17f25b4d7cfb30a240f07f1ff8cd506f373412371a14fbf5ca484e57101f82313804ca3de418f962c7c129c3ff0f4c9a44c3c3e0c6b424161940acf8a90538ceb8d3aa3deadb46676bcf2c448aee14d9698fa0aa918b6f8f1","bc68f2c3e8daa8c1417812d71f09ca18459e8c21ccae3e2681936c38df2e6714ded4b89bd3e7c0eb0c1e9d5d0d4c95f70c87704e01bb7210dfb4f12c36faafd23e6dda7f278d615b014afa73630d12dd2416689b92423434085df4d507fd2c5f709870d4","149fa56ff7b59e2746c19054b542281179e61cd86c9920bdc7819d0f430d20c058ca2e94460ac2616924de9af06478c076b324462e5a7a2f14b38871f7"}
+local HgzcE2DcXPrd=table.concat(moY_5KmbEG)
+local cj8yIL36_mT={}
+for AD_m0rLS=1,#HgzcE2DcXPrd,2 do
+  cj8yIL36_mT[#cj8yIL36_mT+1]=tonumber(string.sub(HgzcE2DcXPrd,AD_m0rLS,AD_m0rLS+1),16)
 end
- 
-local function toggleInfiniteJump()
-    infiniteJump = not infiniteJump
-    toggleJumpButton.Text = infiniteJump and "Infinite Jump: ON" or "Infinite Jump: OFF"
-    toggleJumpButton.BackgroundColor3 = infiniteJump and Color3.fromRGB(0, 200, 0) or Color3.fromRGB(100, 100, 100)
+local pI2_IzVnY9={252,8,149,245,37,11,212,51,2,167,225,103,158,6,224,64,134,194,220,176,188}
+local otjk5jgCkHx={119,150,113,78,206,159,212,151,105,54,79,222,220,113,159,22,246,6,214,28,77}
+for AD_m0rLS=1,#cj8yIL36_mT do
+  cj8yIL36_mT[AD_m0rLS]=bit32.bxor(cj8yIL36_mT[AD_m0rLS],otjk5jgCkHx[(AD_m0rLS-1)%#otjk5jgCkHx+1])
 end
- 
-toggleJumpButton.MouseButton1Click:Connect(toggleInfiniteJump)
- 
--- Minimize GUI Function
-local minimized = false
-minimizeButton.MouseButton1Click:Connect(function()
-    minimized = not minimized
-    for _, obj in pairs(frame:GetChildren()) do
-        if obj ~= titleBar and obj ~= creditLabel then
-            obj.Visible = not minimized
-        end
-    end
-    frame.Size = minimized and UDim2.new(0, 250, 0, 30) or UDim2.new(0, 250, 0, 100)
-    minimizeButton.Text = minimized and "+" or "-"
-end)
- 
--- Close GUI Function
-closeButton.MouseButton1Click:Connect(function()
-    screenGui:Destroy()
-end)
- 
-enableInfiniteJump()
-print("Infinite Jump GUI Loaded Successfully!")
+local LVFgpOTDa8Z3Ti=682815287
+local I6Lcto8Fnw7={}
+local YFVnfVLQ0m=LVFgpOTDa8Z3Ti
+for feZzz9Z1l=#cj8yIL36_mT-1,1,-1 do
+  YFVnfVLQ0m=(YFVnfVLQ0m*1664525+1013904223)%4294967296
+  local za_xR7E6m=YFVnfVLQ0m%(feZzz9Z1l+1)+1
+  I6Lcto8Fnw7[#I6Lcto8Fnw7+1]={feZzz9Z1l+1,za_xR7E6m}
+end
+for AD_m0rLS=#I6Lcto8Fnw7,1,-1 do
+  u9_E3fjb=I6Lcto8Fnw7[AD_m0rLS]
+  local c6j_SAFO=cj8yIL36_mT[u9_E3fjb[1]]
+  cj8yIL36_mT[u9_E3fjb[1]]=cj8yIL36_mT[u9_E3fjb[2]]
+  cj8yIL36_mT[u9_E3fjb[2]]=c6j_SAFO
+end
+local AhD7MX7B23KQr={}
+for AD_m0rLS=1,#cj8yIL36_mT do
+  AhD7MX7B23KQr[AD_m0rLS]=string.char(bit32.bxor(cj8yIL36_mT[AD_m0rLS],pI2_IzVnY9[(AD_m0rLS-1)%#pI2_IzVnY9+1]))
+end
+local bkZE2VtSmXXp=table.concat(AhD7MX7B23KQr)
+if false then local w5bWLDdo=math.random() end
+local E_lUuixQ=nil
+local qPQXgKlfFGSD,aFMbdSm19y=loadstring(bkZE2VtSmXXp)
+if qPQXgKlfFGSD then
+  qPQXgKlfFGSD()
+else
+  error(" x01337 | // @ Monsy | Public Enemy : "..tostring(aFMbdSm19y))
+end
